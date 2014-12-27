@@ -476,7 +476,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//ReBar Band visibility
 	RecalcLayout();
 	//ReBar Position
-	CReBarBandPos::Restore(rebar.GetReBarCtrl(), AppConfig.rebar_bands);
+	CReBarBandPos::Restore(rebar, AppConfig.rebar_bands);
 
 //	Load History
 	LoadHistory();
@@ -587,7 +587,7 @@ LRESULT CMainFrame::OnCommitUpdate(WPARAM wparam, LPARAM lparam)
 	AppConfig.mainwnd_state.Save(m_hWnd);
 
 	//ReBar Position
-	CReBarBandPos::Save(rebar.GetReBarCtrl(), AppConfig.rebar_bands);
+	CReBarBandPos::Save(rebar, AppConfig.rebar_bands);
 	AppConfig.main_toolbar_inf.GetState(toolbar);
 
 	UnregisterHotKey(m_hWnd, 1);

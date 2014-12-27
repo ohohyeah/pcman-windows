@@ -17,8 +17,8 @@ public:
 	UINT wID;
 	UINT fStyle;
 	UINT cx;
-	static void Restore(CReBarCtrl& rb, CReBarBandPos* bp);
-	static void Save(CReBarCtrl& rb, CReBarBandPos* bp);
+	static void Restore(CReBar& rb, CReBarBandPos* bp);
+	static void Save(CReBar& rb, CReBarBandPos* bp);
 	inline CReBarBandPos(){wID = -1;}
 	void Load(char* value)
 	{

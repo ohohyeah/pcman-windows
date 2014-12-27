@@ -16,11 +16,13 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-void CReBarBandPos::Restore(CReBarCtrl& rb, CReBarBandPos* bp)
+void CReBarBandPos::Restore(CReBar& rebar, CReBarBandPos* bp)
 {
+    CReBarCtrl& rb = rebar.GetReBarCtrl();
+    rb.m_hWnd;
 	int c = rb.GetBandCount();
 	REBARBANDINFO bi;
-	bi.cbSize = sizeof(bi);
+    bi.cbSize = rebar.GetReBarBandInfoSize();
 	bi.fMask = RBBIM_SIZE | RBBIM_ID | RBBIM_STYLE;
 	for (int i = 0;i < c;i++)
 	{
@@ -34,12 +36,14 @@ void CReBarBandPos::Restore(CReBarCtrl& rb, CReBarBandPos* bp)
 	}
 }
 
-void CReBarBandPos::Save(CReBarCtrl& rb, CReBarBandPos* bp)
+void CReBarBandPos::Save(CReBar& rebar, CReBarBandPos* bp)
 {
+    CReBarCtrl& rb = rebar.GetReBarCtrl();
 	int c = rb.GetBandCount();
 	REBARBANDINFO bi;
-	bi.cbSize = sizeof(bi);
+    bi.cbSize = rebar.GetReBarBandInfoSize();
 	bi.fMask = RBBIM_SIZE | RBBIM_ID | RBBIM_STYLE;
+
 	for (int i = 0;i < c;i++)
 	{
 		rb.GetBandInfo(i, &bi);
