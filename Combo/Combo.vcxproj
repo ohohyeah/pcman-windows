@@ -69,7 +69,6 @@
       <PreprocessorDefinitions>_DEBUG;_COMBO_;BUILD_UI;WIN32;_WINDOWS;WINVER=0x601;_WIN32_WINNT=_WIN32_WINNT_WIN7;NO_WARN_MBCS_MFC_DEPRECATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AssemblerListingLocation>.\../Debug/</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
