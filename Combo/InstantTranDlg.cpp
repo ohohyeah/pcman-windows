@@ -1,6 +1,6 @@
 // The class created by BBcall //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "InstantTranDlg.h"
 #include "SearchPlugin.h"
 #include "TermView.h"

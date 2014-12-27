@@ -45,14 +45,15 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
-    <IntDir>.\../Debug\</IntDir>
+    <OutDir>$(Configuration)\PCMan\</OutDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>PCMan</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>$(Configuration)\PCMan\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>PCMan</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -66,37 +67,36 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\SimpXmlParser;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;BUILD_UI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;BUILD_UI;WINVER=0x601;_WIN32_WINNT=_WIN32_WINNT_WIN7;NO_WARN_MBCS_MFC_DEPRECATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\../Debug/Lite.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\../Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\../Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\../Debug/</ProgramDataBaseFileName>
       <BrowseInformation>true</BrowseInformation>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0404</Culture>
     </ResourceCompile>
     <PreLinkEvent>
-      <Command>$(OutDir)BuildMenu.exe $(OutDir)PCMan\Config</Command>
+      <Command>$(Configuration)\BuildMenu.exe $(OutDir)Config</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>wsock32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>Debug/PCMan/PCMan.exe</OutputFile>
+      <AdditionalDependencies>wsock32.lib;winmm.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/PCMan.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -111,35 +111,34 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\SimpXmlParser;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;WINVER=0x601;_WIN32_WINNT=_WIN32_WINNT_WIN7;NO_WARN_MBCS_MFC_DEPRECATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\Release/Lite.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0404</Culture>
     </ResourceCompile>
     <PreLinkEvent>
-      <Command>"$(OutDir)"\BuildMenu.exe "$(OutDir)"\PCMan\Config</Command>
+      <Command>$(Configuration)\BuildMenu.exe $(OutDir)Config</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>wsock32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>Release/PCMan/PCMan.exe</OutputFile>
+      <AdditionalDependencies>wsock32.lib;winmm.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>.\Release/PCMan.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddressDlg.cpp">
@@ -178,6 +177,8 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
+    <ClCompile Include="AutoUpdate.cpp" />
+    <ClCompile Include="AutoUpdateDlg.cpp" />
     <ClCompile Include="BBSHyperLink.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -298,6 +299,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
+    <ClCompile Include="InstantTranDlg.cpp" />
     <ClCompile Include="KeyMap.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -328,6 +330,9 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
+    <ClCompile Include="MouseCTL.cpp" />
+    <ClCompile Include="MouseGesture.cpp" />
+    <ClCompile Include="OleImage.cpp" />
     <ClCompile Include="OtherPage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -468,6 +473,8 @@
     <ClInclude Include="AppConfig.h" />
     <ClInclude Include="AutoComplete.h" />
     <ClInclude Include="AutoReplyPage.h" />
+    <ClInclude Include="AutoUpdate.h" />
+    <ClInclude Include="autoupdatedlg.h" />
     <ClInclude Include="BBSHyperLink.h" />
     <ClInclude Include="BrowseDirDlg.h" />
     <ClInclude Include="..\ChiConv\ChiConv.h" />
@@ -489,11 +496,15 @@
     <ClInclude Include="HotkeyEdit.h" />
     <ClInclude Include="HyperLinkPage.h" />
     <ClInclude Include="InputNameDlg.h" />
+    <ClInclude Include="InstantTranDlg.h" />
     <ClInclude Include="KeyMap.h" />
     <ClInclude Include="KeyMapDlg.h" />
     <ClInclude Include="ListDlg.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MemIniFile.h" />
+    <ClInclude Include="MouseCTL.h" />
+    <ClInclude Include="MouseGesture.h" />
+    <ClInclude Include="OleImage.h" />
     <ClInclude Include="OtherPage.h" />
     <ClInclude Include="PasswdDlg.h" />
     <ClInclude Include="PCMan.h" />
